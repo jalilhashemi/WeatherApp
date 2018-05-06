@@ -9,10 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var dayTimeImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // In Abhaengigkeit zu aktuellen Tageszeit Bild anzeigen
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch hour {
+        case 0...6:
+            dayTimeImageView.image = UIImage(named: "Blood")
+        case 7...19:
+            dayTimeImageView.image = UIImage(named: "Sun")
+        case 19...22:
+            dayTimeImageView.image = UIImage(named: "Moon")
+        default:
+            dayTimeImageView.image = UIImage(named: "Blood")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
